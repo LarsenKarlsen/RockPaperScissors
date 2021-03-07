@@ -21,13 +21,16 @@ const computerPlay = () =>{
 
 const playRound = (playerSelection, computerSelection)=>{
     if (playerSelection === computerSelection) {
-        return `Draw game ! You select ${playerSelection}, Computer select ${computerSelection}`;
+        return {'result': 'draw', 'message' :`Draw game ! You select ${playerSelection}, Computer select ${computerSelection}`};
     } else if ((playerSelection === 'scissors' && computerSelection === 'paper')
             || (playerSelection === 'paper' && computerSelection === 'rock')
             || (playerSelection === 'rock' && computerSelection === 'scissors')){
-        return `You win! You select ${playerSelection}, Computer select ${computerSelection}`;
+        return {'result':'player', 'message':`You win! You select ${playerSelection}, Computer select ${computerSelection}`};
     } else {
-        return `You lose! You select ${playerSelection}, Computer select ${computerSelection}`;
+        return {'result':'computer', 'message':`You lose! You select ${playerSelection}, Computer select ${computerSelection}`};
     }
 }
-console.log(computerPlay())
+
+const playerSelection = 'rock';
+computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
