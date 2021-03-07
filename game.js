@@ -31,6 +31,34 @@ const playRound = (playerSelection, computerSelection)=>{
     }
 }
 
-const playerSelection = 'rock';
-computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+const playGame = () => {
+    const rounds = 6; // how much games;
+    let playerScore = 0;
+    let computerScore = 0;
+    
+    for (let i=1;i<rounds;i++){
+        let playerSelection = 'rock'; // place for player selection function
+        let computerSelection = computerPlay();
+        let game = playRound(playerSelection, computerSelection);
+        
+        if (game['result'] === 'player'){
+            playerScore++;
+        } else if (game['result'] === 'computer'){
+            computerScore++;
+        }
+        
+        console.log(`Results of round:${i}`)
+        console.log(game['message']);
+        console.log(`After ${i} round\tPlayer score: ${playerScore}\tComputer score: ${computerScore}`);
+    }
+    
+    if (playerScore > computerScore){
+        console.log(`Congratulations You win !`);
+    } else if (playerScore < computerScore){
+        console.log(`Sorry but You lose, try next time`);
+    } else {
+        console.log('Draw game')
+    }
+}
+
+playGame();
