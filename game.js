@@ -48,7 +48,7 @@ const playGame = () => {
     let computerScore = 0;
     
     for (let i=1;i<rounds;i++){
-        let playerSelection = 'rock'; // place for player selection function
+        let playerSelection = playerChoice(); // place for player selection function
         let computerSelection = computerPlay();
         let game = playRound(playerSelection, computerSelection);
         
@@ -72,5 +72,4 @@ const playGame = () => {
     }
 }
 
-console.log(playerChoice())
-//playGame();
+playGame();
