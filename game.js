@@ -31,6 +31,17 @@ const playRound = (playerSelection, computerSelection)=>{
     }
 }
 
+const playerChoice = () => {
+    let player = prompt('Pick Rock, Paper or Scissors');
+    player = player.toLowerCase()
+    if (player === 'rock'|| player === 'paper'
+        || player === 'scissors') {
+            return player;
+        } else {
+            alert ('ALLOWED only rock, papper, scissors input')
+        }
+}
+
 const playGame = () => {
     const rounds = 6; // how much games;
     let playerScore = 0;
@@ -61,4 +72,5 @@ const playGame = () => {
     }
 }
 
-playGame();
+console.log(playerChoice())
+//playGame();
