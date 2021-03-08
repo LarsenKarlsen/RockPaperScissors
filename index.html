@@ -9,22 +9,25 @@
 </head>
 <body>
     <div class="main">
-        <div class="player">
-            <div class="humanScore">
 
-            </div>
+        <div class="player">Chose your destiny
+
             <div class='humanChoice'>
-
+                <button class="humanbtn" id="rock">ROCK</button>
+                <button class="humanbtn" id="paper">PAPER</button>
+                <button class="humanbtn" id="scissors">SCISSORS</button>
             </div>
         </div>
-        <div class="AI">
+        <div class="log">
+            <div class="humanScore">
+                <p>Player Score:</p><p id="humanScore">0</p>
+            </div>
+            <div id="log">Result of games will be there</div>
             <div class="aiScore">
-
-            </div>
-            <div class="aiChoice">
-
+                <p>AI score: </p><p id='aiScore'>0</p>
             </div>
         </div>
+        <div class="result"></div>
     </div>
 </body>
 <script src='./game.js'></script>

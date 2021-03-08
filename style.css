@@ -1,0 +1,57 @@
+* {margin: 0; padding: 0;}
+
+.main {
+    display:flex;
+    flex-direction: column;
+    align-content: flex-start;
+    height: 100vh;
+    flex-wrap: wrap;
+    background-color: gray;
+}
+
+.player {
+    text-align: center;
+    font-size: 24px;
+    flex:0;
+    width: 600px;
+    margin: auto;
+    /* background-color: blue; */
+}
+.humanScore {
+    text-align: center;
+    margin: auto;
+    /* background-color: blueviolet; */
+}
+.humanChoice{
+    display:flex;
+    align-items: stretch;
+}
+.humanbtn{
+    flex:1;
+    height: 100px;
+    width: 100px;
+    border: 5px solid black;
+}
+.humanbtn:hover{
+    background-color: cyan;
+}
+.log {
+    font-size: 24px;
+    text-align: center;
+    width: 600px;
+    margin: auto;
+    flex:1;
+    /* background-color: chartreuse; */
+}
+.refreshBtn{
+    margin: auto;
+    width: 600px;
+    height: 100px;
+    font-size: 24px;
+}
+.result{
+    flex:1;
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+}

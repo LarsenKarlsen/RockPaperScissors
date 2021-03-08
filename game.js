@@ -1,4 +1,4 @@
-console.log("hello")
+//console.log("hello")
 
 // randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’
 const computerPlay = () =>{
@@ -31,45 +31,89 @@ const playRound = (playerSelection, computerSelection)=>{
     }
 }
 
-const playerChoice = () => {
-    let player = prompt('Pick Rock, Paper or Scissors');
-    player = player.toLowerCase()
-    if (player === 'rock'|| player === 'paper'
-        || player === 'scissors') {
-            return player;
-        } else {
-            alert ('ALLOWED only rock, papper, scissors input')
-        }
-}
-
-const playGame = () => {
-    const rounds = 6; // how much games;
-    let playerScore = 0;
-    let computerScore = 0;
+const playGame = (playerChoice) => {
+    let playerScore = Number(document.querySelector("#humanScore").innerHTML);
+    let computerScore = Number(document.querySelector("#aiScore").innerHTML);
     
-    for (let i=1;i<rounds;i++){
-        let playerSelection = playerChoice(); // place for player selection function
-        let computerSelection = computerPlay();
-        let game = playRound(playerSelection, computerSelection);
-        
-        if (game['result'] === 'player'){
-            playerScore++;
-        } else if (game['result'] === 'computer'){
-            computerScore++;
-        }
-        
-        console.log(`Results of round:${i}`)
-        console.log(game['message']);
-        console.log(`After ${i} round\tPlayer score: ${playerScore}\tComputer score: ${computerScore}`);
+    let playerSelection = playerChoice; // place for player selection function
+    let computerSelection = computerPlay();
+    let game = playRound(playerSelection, computerSelection);
+    
+    if (game['result'] === 'player'){
+        playerScore++;
+        document.querySelector("#humanScore").innerHTML = playerScore;
+    } else if (game['result'] === 'computer'){
+        computerScore++;
+        document.querySelector("#aiScore").innerHTML = computerScore;
     }
     
-    if (playerScore > computerScore){
-        console.log(`Congratulations You win !`);
-    } else if (playerScore < computerScore){
-        console.log(`Sorry but You lose, try next time`);
-    } else {
-        console.log('Draw game')
+    document.querySelector("#log").innerHTML = game['message']// console.log(game['message']);
+}
+
+const restartGame = ()=>{
+    let playerScoreObj = document.querySelector("#humanScore");
+    let aiScoreobj = document.querySelector("#aiScore");
+    const refreshBtn = document.querySelector(".refreshBtn");
+    const resultContainer = document.querySelector('.result');
+
+    playerScoreObj.innerHTML = 0;
+    aiScoreobj.innerHTML = 0;
+    const buttons = document.querySelectorAll('.humanbtn')
+    buttons.forEach((button)=>{button.disabled=false})
+    refreshBtn.remove();
+    resultContainer.textContent = ''    
+}
+
+const endGame = ()=>{
+    const playerScoreObj = document.querySelector("#humanScore");
+    const aiScoreobj = document.querySelector("#aiScore");
+    const refreshBtn = document.createElement("button");
+    const mainContainer = document.querySelector('.main');
+    const resultContainer = document.querySelector('.result');
+
+    refreshBtn.classList.add('refreshBtn');
+    refreshBtn.textContent = 'Restart Game';
+    refreshBtn.addEventListener('click', ()=>{
+        restartGame();
+    })
+    //check if player or AI get 5 wins
+    if (Number(playerScoreObj.innerHTML) === 5){
+        console.log('player wins');
+        document.querySelector("#log").innerHTML = "-";
+        mainContainer.appendChild(refreshBtn)
+        const buttons = document.querySelectorAll('.humanbtn')
+        buttons.forEach((button)=>{button.disabled=true})
+        resultContainer.textContent = 'Congratz ! Human player WIN!'
+    } else if (Number(aiScoreobj.innerHTML) === 5){
+        console.log('AI Wins')
+        document.querySelector("#log").innerHTML = "-";
+        mainContainer.appendChild(refreshBtn)
+        const buttons = document.querySelectorAll('.humanbtn')
+        buttons.forEach((button)=>{button.disabled=true})
+        resultContainer.textContent = 'Oh sorry ! AI player WIN!'
     }
 }
 
+//add eventlistners to buttons;
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    playGame("rock");
+  });
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    playGame("paper");
+});
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    playGame("scissors");
+  });
+
+//add endGame function to buttons
+const buttons = document.querySelectorAll('.humanbtn')
+buttons.forEach((button)=>{button.addEventListener('click',()=>{
+    endGame();
+})
+})
 //playGame();
