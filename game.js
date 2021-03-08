@@ -72,4 +72,4 @@ const playGame = () => {
     }
 }
 
-playGame();
+//playGame();
